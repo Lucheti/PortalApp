@@ -13,7 +13,10 @@ public class AutomatedPortal {
     WebDriver driver;
 
     void invokeBrowser() {
+        //abre chrome y carga el portal de la austral
         try {
+            //el comando webdriver.chrome.driver siempre es el mismo (si estas abriendo chrome) pero la direccion es donde tengas
+            //guardado el Chromedriver que te lo bajas de la pagina de Seleniumhq.org
             System.setProperty("webdriver.chrome.driver", "/Users/lucasgarcia/Desktop/Chromedriver");
             driver = new ChromeDriver();
             driver.manage().deleteAllCookies();
@@ -26,6 +29,7 @@ public class AutomatedPortal {
         }
     }
     public void iniciarSesion(String usuarioStr, String contraseñaStr) {
+        //Ingresa usuario y contraseña en el formulario del portal y loguea
 
         driver.findElement(By.name("NroDoc")).sendKeys(usuarioStr);
 
@@ -36,14 +40,17 @@ public class AutomatedPortal {
     }
 
     public void verNotas(){
+        //hardcodeado pero abre el ver notas el Algebra 1
         driver.findElement(By.xpath("//*[@id=\"MateriaActions\"]/a")).click();
 
     }
     boolean isDisplayed(String id){
+        // puse este metodo pq no podes llamar al driver desde el main porque le da un golpe de estatica
         return driver.findElement(By.id(id)).isDisplayed();
     }
 
     public static void main(String[] args) throws InterruptedException {
+        //Dale play monoooooooooooaskFJGAKSDLGFLKASDGFKASGJDF
         AutomatedPortal portal = new AutomatedPortal();
         portal.invokeBrowser();
         portal.iniciarSesion("41710483", "6541Neuq");
@@ -54,4 +61,3 @@ public class AutomatedPortal {
 }
 
 
-//*[@id="MateriaActions"]/a[3]
